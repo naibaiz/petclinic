@@ -23,15 +23,15 @@ services:
 # to set the database password. You must create `db/password.txt` and add
 # a password of your choosing to it before running `docker-compose up`.
     depends_on:
-      db:
+      postgres:
         condition: service_healthy
     environment:
-      - POSTGRES_URL=jdbc:postgresql://db:5432/petclinic   
+      - POSTGRES_URL=jdbc:postgresql://postgres:5432/petclinic   
     develop:
       watch:
         - action: rebuild
           path: .      
-  db:
+  postgres:
     image: postgres:18
     restart: always
     volumes:
